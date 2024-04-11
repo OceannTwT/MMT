@@ -5,8 +5,8 @@ from openai import OpenAI
 def predict(args, prompt):
     my_key = args.api_key
     print(len(prompt))
-    max_length = 4000 - len(prompt)
-    temperature = 0.7
+    max_length = 3800 - len(prompt)
+    temperature = 0.3
     top_p = 1
     frequency_penalty = 0
     presence_penalty = 0
