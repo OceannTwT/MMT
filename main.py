@@ -4,6 +4,13 @@ import logging
 from gpt_predict import predict
 from config import args
 from utils import print_exp
+from GPTFactory.GPTFactory import GPTFactory
+
+def call_gpt_from_prompt(user_prompt):
+    gpt_interface = GPTFactory("gpt-4o-mini", args.api_key)
+    gpt_interface.add_user_conv(user_prompt)
+    result = gpt_interface.predict()
+    return result
 
 if __name__ == '__main__':
     prompt = " "
@@ -17,7 +24,8 @@ if __name__ == '__main__':
     if args.need_series == False:
         print(prompt)
         print_exp(args)
-        ans = predict(args, prompt)
+        ans = call_gpt_from_prompt(prompt)
+        # ans = predict(args, prompt)
         print(ans)
     else:
         lines = []
@@ -34,12 +42,14 @@ if __name__ == '__main__':
             if new_type == "normal":
                 # print(prompt) 
                 query = prompt + new_prompt
-                ans = predict(args, query)
+                ans = call_gpt_from_prompt(prompt)
+                # ans = predict(args, query)
                 ans_list.append(ans)
             else :
                 prompt = original_prompt
                 query = prompt + new_prompt
-                ans = predict(args, query)
+                ans = call_gpt_from_prompt(prompt)
+                # ans = predict(args, query)
                 ans_list.append(ans)
                 prompt = prompt + ans
 
