@@ -1,7 +1,7 @@
 import time
 import json
 import logging
-from gpt_predict import predict
+# from gpt_predict import predict
 from config import args
 from utils import print_exp
 from GPTFactory.GPTFactory import GPTFactory
@@ -42,13 +42,13 @@ if __name__ == '__main__':
             if new_type == "normal":
                 # print(prompt) 
                 query = prompt + new_prompt
-                ans = call_gpt_from_prompt(prompt)
+                ans = call_gpt_from_prompt(query)
                 # ans = predict(args, query)
                 ans_list.append(ans)
             else :
                 prompt = original_prompt
                 query = prompt + new_prompt
-                ans = call_gpt_from_prompt(prompt)
+                ans = call_gpt_from_prompt(query)
                 # ans = predict(args, query)
                 ans_list.append(ans)
                 prompt = prompt + ans
